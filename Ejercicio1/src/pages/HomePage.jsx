@@ -25,7 +25,7 @@ function HomePage() {
               </div>
               <div className="botones">
                 <Link to='/formulario'><button className="boton-de-crear">Crear una tarea</button></Link>
-                <button className="boton-de-borrar" onClick={deleteAllTasks}>Borrar todas las tareas</button>
+                <button className="boton-de-borrar">Borrar todas las tareas</button>
               </div>
             </div>
           );

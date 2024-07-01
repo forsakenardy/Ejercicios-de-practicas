@@ -6,3 +6,26 @@ body {
     background-size: 80vh;
     color: white;
 }
+.lista-completa {
+  width: 90vw;
+  margin-left: 5vw;
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+}
+.listas-de-tareas {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 84vw;
+  height: 75vh;
+  padding:0 3vw;
+  overflow-x: auto;
+  }
+  .tareas {
+    background-color: rgba(0, 0, 0, 0.7);
+    min-width: 75vw;
+    margin-top: 4vh;
+    text-align: center;
+    border-radius: 20px;
+  }

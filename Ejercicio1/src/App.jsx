@@ -28,7 +28,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<HomePage tasks={tasks} setTasks={setTasks} getTask={getTask}/>} />
-        <Route path='/formulario' element={<FormPage />} />
+        <Route path='/formulario' element={<FormPage  getTask={getTask}/>} />
       </Routes>
     </>
 

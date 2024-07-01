@@ -5,7 +5,6 @@ import TareasRealizadas from "./ListaRealizadas";
 import { Link } from 'react-router-dom';
 
 function HomePage({ tasks, getTask, setTasks }) {
-
   const deleteTask = async (taskId) => {
     const { data, error } = await supabase
       .from("ejercicio1")
@@ -20,28 +19,42 @@ function HomePage({ tasks, getTask, setTasks }) {
     }
   };
 
-    return (
+  const deleteAllTasks = async () => {
+    const { data, error } = await supabase
+      .from("ejercicio1")
+      .delete()
+      .gte('id', 0); // Filtro que selecciona todos los registros
 
-            <div className="lista-completa">
-              <div className="listas-de-tareas">
-                <div className="tareas">
-                  <h2>Lista de tareas <br /> pendientes</h2>
-                  <TareasPendientes tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
-                </div>
-                <div className="tareas">
-                  <h2>Lista de tareas <br /> en curso</h2>
-                  <TareasEnCurso tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
-                </div>
-                <div className="tareas">
-                  <h2>Lista de tareas <br /> realizadas</h2>
-                  <TareasRealizadas tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
-                </div>
-              </div>
-              <div className="botones">
-                <Link to='/formulario'><button className="boton-de-crear">Crear una tarea</button></Link>
-                <button className="boton-de-borrar">Borrar todas las tareas</button>
-              </div>
-            </div>
-          );
+    if (error) {
+      console.error("Error deleting all tasks:", error);
+    } else {
+      console.log("All tasks deleted successfully:", data);
+      getTask();
+    }
+  };
+
+  return (
+    <div className="lista-completa">
+      <div className="listas-de-tareas">
+        <div className="tareas">
+          <h2>Lista de tareas <br /> pendientes</h2>
+          <TareasPendientes tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
+        </div>
+        <div className="tareas">
+          <h2>Lista de tareas <br /> en curso</h2>
+          <TareasEnCurso tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
+        </div>
+        <div className="tareas">
+          <h2>Lista de tareas <br /> realizadas</h2>
+          <TareasRealizadas tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
+        </div>
+      </div>
+      <div className="botones">
+        <Link to='/formulario'><button className="boton-de-crear">Crear una tarea</button></Link>
+        <button className="boton-de-borrar" onClick={deleteAllTasks}>Borrar todas las tareas</button>
+      </div>
+    </div>
+  );
 }
+
 export default HomePage;

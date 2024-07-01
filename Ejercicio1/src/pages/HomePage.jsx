@@ -4,7 +4,7 @@ import TareasEnCurso from "./ListaEnCurso";
 import TareasRealizadas from "./ListaRealizadas";
 import { Link } from 'react-router-dom';
 
-function HomePage() {
+function HomePage({ tasks, getTask, setTasks }) {
 
     return (
 
@@ -12,15 +12,15 @@ function HomePage() {
               <div className="listas-de-tareas">
                 <div className="tareas">
                   <h2>Lista de tareas <br /> pendientes</h2>
-                  <TareasPendientes />
+                  <TareasPendientes tasks={tasks} getTask={getTask} setTasks={setTasks} />
                 </div>
                 <div className="tareas">
                   <h2>Lista de tareas <br /> en curso</h2>
-                  <TareasEnCurso />
+                  <TareasEnCurso tasks={tasks} getTask={getTask} setTasks={setTasks} />
                 </div>
                 <div className="tareas">
                   <h2>Lista de tareas <br /> realizadas</h2>
-                  <TareasRealizadas />
+                  <TareasRealizadas tasks={tasks} getTask={getTask} setTasks={setTasks} />
                 </div>
               </div>
               <div className="botones">

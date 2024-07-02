@@ -42,15 +42,15 @@ function HomePage({ tasks, getTask, setTasks , handleButtonClick}) {
       <div className="listas-de-tareas">
         <div className="tareas">
           <h2>Lista de tareas <br /> pendientes</h2>
-          <TareasPendientes tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
+          <TareasPendientes tasks={tasks} getTask={getTask} setTasks={setTasks} handleButtonClick={handleButtonClick} deleteTask={deleteTask} />
         </div>
         <div className="tareas">
           <h2>Lista de tareas <br /> en curso</h2>
-          <TareasEnCurso tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
+          <TareasEnCurso tasks={tasks} getTask={getTask} setTasks={setTasks} handleButtonClick={handleButtonClick} deleteTask={deleteTask} />
         </div>
         <div className="tareas">
           <h2>Lista de tareas <br /> realizadas</h2>
-          <TareasRealizadas tasks={tasks} getTask={getTask} setTasks={setTasks} deleteTask={deleteTask} />
+          <TareasRealizadas tasks={tasks} getTask={getTask} setTasks={setTasks} handleButtonClick={handleButtonClick} deleteTask={deleteTask} />
         </div>
       </div>
       <div className="botones">

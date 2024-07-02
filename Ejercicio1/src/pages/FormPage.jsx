@@ -2,7 +2,7 @@ import { useState } from "react";
 import supabase from "../supabase/config";
 import { Link } from "react-router-dom";
 
-function FormPage({ getTask }) {
+function FormPage({ getTask, handleButtonClick }) {
     const [task, setTask] = useState(''); //valor por default vacio
     const [description, setDescription] = useState('');
 
@@ -49,8 +49,8 @@ function FormPage({ getTask }) {
                     />
                 </div>
                 <div className="botones">
-                    <button className="boton-de-crear" type="submit">Crear tarea</button>
-                    <Link to='/'><button className="boton-de-borrar">Volver a atras</button></Link>
+                    <button onClick={handleButtonClick} className="boton-de-crear" type="submit">Crear tarea</button>
+                    <Link to='/'><button onClick={handleButtonClick} className="boton-de-borrar">Volver a atras</button></Link>
                 </div>
             </form>
         </div>

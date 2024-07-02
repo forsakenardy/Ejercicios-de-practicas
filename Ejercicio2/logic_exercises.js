@@ -55,3 +55,18 @@ function prime_numbers(n) {
 
     return primes;
 }
+
+function bubble_sort(arr) {
+    //aqui comparamos los valores de los numeros en la posicion de 0 a arr.lenght, con el numero en la posicion siguiente
+    //e intercambiamos en caso de que sea mayor, este proceso lo repetimos i veces para 
+    //dar el resultado con todos los valores en posicion
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+        }
+    }
+
+    return arr;
+}

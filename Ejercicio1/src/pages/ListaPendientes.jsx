@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import supabase from "../supabase/config";
 
 function TareasPendientes({ tasks, deleteTask, getTask, setTasks }) {
     const [editTaskId, setEditTaskId] = useState(null); // Estado para manejar el modo de edición
     const [editTask, setEditTask] = useState({ tarea: '', descripción: '' }); // Estado para la tarea que se está editando
+
+    const enviarATareasEnCurso = async (taskId) => {
+        const { data, error } = await supabase
+            .from("ejercicio1")
+            .update({ estado: 'en curso' })
+            .eq('id', taskId);
+
+        if (error) {
+            console.error("Error updating task:", error);
+        } else {
+            console.log("Task updated successfully:", data);
+            const updatedTasks = tasks.map(task => {
+                if (task.id === taskId) {
+                    return { ...task, estado: 'en curso' };
+                }
+                return task;
+            });
+            setTasks(updatedTasks);
+            getTask();
+        }
+    };
 
     const handleEdit = (task) => {
         setEditTaskId(task.id);
@@ -32,10 +53,12 @@ function TareasPendientes({ tasks, deleteTask, getTask, setTasks }) {
         }
     };
 
+    const tareasPendientes = tasks.filter(task => task.estado === 'pendiente');
+
     return (
         <div className="contenido">
             {
-                tasks.map((task) => (
+                tareasPendientes.map((task) => (
                     <div key={task.id} className="una-tarea">
                         {
                             editTaskId === task.id ? (
@@ -65,7 +88,7 @@ function TareasPendientes({ tasks, deleteTask, getTask, setTasks }) {
                                             <button className='boton-de-crear' onClick={() => handleEdit(task)}>Editar</button>
                                             <button className='boton-de-borrar' onClick={() => deleteTask(task.id)}>Borrar</button>
                                         </div>
-                                        <button className='boton-de-trasladar'>👉</button>
+                                        <button className='boton-de-trasladar' onClick={() => enviarATareasEnCurso(task.id)}>👉</button>
                                     </div>
                                 </>
                             )

@@ -4,7 +4,7 @@ import TareasEnCurso from "./ListaEnCurso";
 import TareasRealizadas from "./ListaRealizadas";
 import { Link } from 'react-router-dom';
 
-function HomePage({ tasks, getTask, setTasks }) {
+function HomePage({ tasks, getTask, setTasks , handleButtonClick}) {
 
   const deleteTask = async (taskId) => {
     const { data, error } = await supabase
@@ -54,8 +54,13 @@ function HomePage({ tasks, getTask, setTasks }) {
         </div>
       </div>
       <div className="botones">
-        <Link to='/formulario'><button className="boton-de-crear">Crear una tarea</button></Link>
-        <button className="boton-de-borrar" onClick={deleteAllTasks}>Borrar todas las tareas</button>
+        <Link to='/formulario'><button onClick={handleButtonClick} className="boton-de-crear">Crear una tarea</button></Link>
+        <button className="boton-de-borrar" onClick={() => {
+          deleteAllTasks()
+          handleButtonClick()
+        }
+        }
+          >Borrar todas las tareas</button>
       </div>
     </div>
   );

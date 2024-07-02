@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  
+
   const [tasks, setTasks] = useState([])
 
   const getTask = async () => {
@@ -16,10 +16,10 @@ function App() {
       return;
     }
     else {
-      console.log("data lista", tasks);
       setTasks(tasks);
     }
   }
+  // Aqui obtengo la lista de tareas de mi base de datos
   useEffect(() => {
     getTask();
   }, []);
@@ -29,10 +29,10 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<HomePage tasks={tasks} setTasks={setTasks} getTask={getTask} />} />
-        <Route path='/formulario' element={<FormPage  getTask={getTask}/>} />
+        <Route path='/formulario' element={<FormPage getTask={getTask} />} />
       </Routes>
     </>
-
+    //rutas con propiedades enviadas
   )
 }
 

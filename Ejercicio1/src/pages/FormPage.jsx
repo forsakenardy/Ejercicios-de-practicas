@@ -3,28 +3,27 @@ import supabase from "../supabase/config";
 import { Link } from "react-router-dom";
 
 function FormPage({ getTask }) {
-    const [task, setTask] = useState('');
+    const [task, setTask] = useState(''); //valor por default vacio
     const [description, setDescription] = useState('');
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); //prevenimos el comportamiento natural del boton de actualizar la pagina
 
         const { data, error } = await supabase
             .from("ejercicio1")
-            .insert([
+            .insert([  //empleamos este metodo para crear una nueva tarea con las propiedades marcadas abajo
                 { tarea: task, descripción: description }
             ]);
 
         if (error) {
             console.error("Error creating task:", error);
         } else {
-            console.log("Task created successfully:", data);
-            // Reset the form
+            console.log("Task created successfully:");
             setTask('');
             setDescription('');
-            getTask();
+            getTask(); //actualizamos las tareas
         }
-    };
+    }; // esta funcion nos permite manejar el submit del formulario, creando a nueva tarea y regresando los valores a ''
 
     return (
         <div className="form-container">
@@ -36,7 +35,7 @@ function FormPage({ getTask }) {
                         type="text"
                         id="task"
                         value={task}
-                        onChange={(e) => setTask(e.target.value)}
+                        onChange={(e) => setTask(e.target.value)} //creamos un nombre para la nueva tarea 
                         required
                     />
                 </div>

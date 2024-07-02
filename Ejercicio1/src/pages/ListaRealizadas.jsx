@@ -3,7 +3,7 @@ import supabase from "../supabase/config";
 import { useState } from 'react';
 
 function TareasRealizadas({ tasks, deleteTask, getTask, setTasks }) {
-
+    //Aqui empleamos la misma logica de la lista Pendiente
     const [editTaskId, setEditTaskId] = useState(null);
     const [editTask, setEditTask] = useState({ tarea: '', descripción: '' });
 
@@ -16,7 +16,7 @@ function TareasRealizadas({ tasks, deleteTask, getTask, setTasks }) {
         if (error) {
             console.error("Error updating task:", error);
         } else {
-            console.log("Task updated successfully:", data);
+            console.log("Task updated successfully");
             const updatedTasks = tasks.map(task => {
                 if (task.id === taskId) {
                     return { ...task, estado: 'en curso' };
@@ -47,7 +47,7 @@ function TareasRealizadas({ tasks, deleteTask, getTask, setTasks }) {
         if (error) {
             console.error("Error updating task:", error);
         } else {
-            console.log("Task updated successfully:", data);
+            console.log("Task updated successfully");
             setTasks(prevTasks => prevTasks.map(task => task.id === editTaskId ? { ...task, ...editTask } : task));
             setEditTaskId(null);
             getTask();

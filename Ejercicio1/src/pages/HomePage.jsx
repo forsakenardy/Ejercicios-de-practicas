@@ -5,17 +5,20 @@ import TareasRealizadas from "./ListaRealizadas";
 import { Link } from 'react-router-dom';
 
 function HomePage({ tasks, getTask, setTasks }) {
+
   const deleteTask = async (taskId) => {
     const { data, error } = await supabase
       .from("ejercicio1")
       .delete()
       .eq('id', taskId);
-
+    // para borrar una tarea especifica de la base de datos usando el metodo delete
+    // y coincidiendo el id de esta tarea con la que se quiere borrar
     if (error) {
       console.error("Error deleting task:", error);
     } else {
       console.log("Task deleted successfully:", data);
       getTask();
+      // llamando la funcion
     }
   };
 
@@ -23,17 +26,18 @@ function HomePage({ tasks, getTask, setTasks }) {
     const { data, error } = await supabase
       .from("ejercicio1")
       .delete()
-      .gte('id', 0); // Filtro que selecciona todos los registros
-
+      .gte('id', 0);
+    // para borrar todas las tareas de la base de datos seleccionando a todos sus componentes
     if (error) {
       console.error("Error deleting all tasks:", error);
     } else {
-      console.log("All tasks deleted successfully:", data);
+      console.log("All tasks deleted successfully");
       getTask();
     }
   };
 
   return (
+    // Aqui llamamos a la funcion deleteAllTasks al hacer click en el boton y enviamos deleteTask como prop a las demas paginas
     <div className="lista-completa">
       <div className="listas-de-tareas">
         <div className="tareas">

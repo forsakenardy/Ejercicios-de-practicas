@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 function TareasEnCurso({ tasks, deleteTask, getTask, setTasks }) {
 
-    const [editTaskId, setEditTaskId] = useState(null); 
-    const [editTask, setEditTask] = useState({ tarea: '', descripción: '' }); 
+    const [editTaskId, setEditTaskId] = useState(null);
+    const [editTask, setEditTask] = useState({ tarea: '', descripción: '' });
 
     const handleEdit = (task) => {
         setEditTaskId(task.id);
@@ -33,7 +33,7 @@ function TareasEnCurso({ tasks, deleteTask, getTask, setTasks }) {
             getTask();
         }
     };
-    
+
     const enviarATareasPendientes = async (taskId) => {
         const { data, error } = await supabase
             .from("ejercicio1")
@@ -107,7 +107,7 @@ function TareasEnCurso({ tasks, deleteTask, getTask, setTasks }) {
                                     <h1 className="nombre-de-la-tarea">{task.tarea}</h1>
                                     <p>{task.descripción}</p>
                                     <div className='botones2'>
-                                    <button className='boton-de-trasladar' onClick={() => enviarATareasPendientes(task.id)}>👈</button>  
+                                        <button className='boton-de-trasladar' onClick={() => enviarATareasPendientes(task.id)}>👈</button>
                                         <div className='editar-borrar'>
                                             <button className='boton-de-crear' onClick={() => handleEdit(task)}>Editar</button>
                                             <button className='boton-de-borrar' onClick={() => deleteTask(task.id)}>Borrar</button>

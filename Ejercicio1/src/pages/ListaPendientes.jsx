@@ -62,7 +62,7 @@ function TareasPendientes({ tasks, deleteTask, getTask, setTasks }) {
                     <div key={task.id} className="una-tarea">
                         {
                             editTaskId === task.id ? (
-                                <form onSubmit={handleEditSubmit}>
+                                <form className='edit-form' onSubmit={handleEditSubmit}>
                                     <input
                                         type="text"
                                         name="tarea"
@@ -76,8 +76,10 @@ function TareasPendientes({ tasks, deleteTask, getTask, setTasks }) {
                                         onChange={handleEditChange}
                                         required
                                     />
-                                    <button type="submit">Guardar</button>
-                                    <button type="button" onClick={() => setEditTaskId(null)}>Cancelar</button>
+                                    <div className='botones2'>
+                                    <button className='boton-de-crear' type="submit">Guardar</button>
+                                    <button className='boton-de-borrar' type="button" onClick={() => setEditTaskId(null)}>Cancelar</button>
+                                    </div>
                                 </form>
                             ) : (
                                 <>

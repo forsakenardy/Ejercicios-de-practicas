@@ -70,3 +70,24 @@ function bubble_sort(arr) {
 
     return arr;
 }
+
+function binary_search(arr, target) {
+    let initial = 0;
+    let final = arr.length - 1;
+    let foundIndex = -1;
+
+    for (let mid; initial <= final;) {
+        mid = Math.floor((initial + final) / 2);
+
+        if (arr[mid] === target) {
+            foundIndex = mid;
+            break;
+        } else if (arr[mid] < target) {
+            initial = mid + 1;
+        } else {
+            final = mid - 1;
+        }
+    }
+
+    return foundIndex;
+}

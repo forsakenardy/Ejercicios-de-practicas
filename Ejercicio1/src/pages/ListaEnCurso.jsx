@@ -101,10 +101,10 @@ function TareasEnCurso({ tasks, deleteTask, getTask, setTasks, handleButtonClick
                                     />
                                     <button onClick={handleButtonClick} type="submit">Guardar</button>
                                     <button type="button" onClick={() => {
-                                                handleButtonClick()
-                                                setEditTaskId(null)
-                                                 }
-                                                 }>Cancelar</button>
+                                        handleButtonClick()
+                                        setEditTaskId(null)
+                                    }
+                                    }>Cancelar</button>
                                 </form>
                             ) : (
                                 <>
@@ -112,34 +112,34 @@ function TareasEnCurso({ tasks, deleteTask, getTask, setTasks, handleButtonClick
                                     <p>{task.descripción}</p>
                                     <div className='botones2'>
                                         <button className='boton-de-trasladar' onClick={() => {
-                                                handleButtonClick()
-                                                enviarATareasPendientes(task.id)
-                                                 }
-                                                 }>👈</button>
+                                            handleButtonClick()
+                                            enviarATareasPendientes(task.id)
+                                        }
+                                        }>👈</button>
                                         <div className='editar-borrar'>
                                             <button className='boton-de-crear' onClick={() => {
                                                 handleButtonClick()
-                                                 handleEdit(task)
-                                                 }
-                                                 }>Editar</button>
-                                        <button className='boton-de-borrar' onClick={() => {
+                                                handleEdit(task)
+                                            }
+                                            }>Editar</button>
+                                            <button className='boton-de-borrar' onClick={() => {
                                                 handleButtonClick()
                                                 deleteTask(task.id)
-                                                 }
-                                                 }>Borrar</button>
+                                            }
+                                            }>Borrar</button>
+                                        </div>
+                                        <button className='boton-de-trasladar' onClick={() => {
+                                            handleButtonClick()
+                                            enviarATareasRealizadas(task.id)
+                                        }
+                                        }>👉</button>
                                     </div>
-                                    <button className='boton-de-trasladar' onClick={() => {
-                                                handleButtonClick()
-                                                enviarATareasRealizadas(task.id)
-                                                 }
-                                                 }>👉</button>
-                                </div>
-                    </>
-                )
+                                </>
+                            )
                         }
-        </div>
-    ))
-}
+                    </div>
+                ))
+            }
         </div >
     );
 }

@@ -6,6 +6,9 @@ body {
     background-size: 80vh;
     color: white;
 }
+button {
+  cursor: pointer;
+}
 .lista-completa {
   width: 90vw;
   margin-left: 5vw;
@@ -104,6 +107,7 @@ body {
   input {
     background-color: rgba(0, 0, 255, 0.3);
     color: white;
+    height: 25px;
   }
   textarea {
     background-color: rgba(0, 0, 255, 0.3);
@@ -122,4 +126,44 @@ body {
     flex-direction: column;
     gap: 20px;
     margin-top: 20px;
+  }
+
+  @media (min-width: 550px) {
+    body {
+      background-size: cover;
+    }
+    .tareas {
+      min-width: 27vw;
+    }
+    .contenido {
+      width: 22vw;
+    }
+    .una-tarea { 
+      padding-left: 1vw;
+      padding-right: 1vw;
+    }
+    .boton-de-crear {
+      width: 15vw;
+    }
+    .boton-de-borrar {
+      width: 15vw;
+    }
+    .botones2 button {
+      width: 60px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      width: 30vw;
+      margin-left: 5vw;
+      margin-bottom: 20px;
+    }
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      width: 40vw;
+      margin-left: 30vw;
+      padding-top: 2vh;
+      padding-bottom: 2vh;
+    }
   }

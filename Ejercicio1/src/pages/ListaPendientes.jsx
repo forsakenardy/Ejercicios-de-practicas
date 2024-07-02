@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import supabase from "../supabase/config";
 
-function TareasPendientes({ tasks, deleteTask, getTask, setTasks }) {
+function TareasPendientes({ tasks, deleteTask, getTask, setTasks, handleButtonClick }) {
     const [editTaskId, setEditTaskId] = useState(null); // Estado para manejar el modo de edición
     const [editTask, setEditTask] = useState({ tarea: '', descripción: '' }); // Estado para la tarea que se está editando
 
@@ -80,8 +80,12 @@ function TareasPendientes({ tasks, deleteTask, getTask, setTasks }) {
                                         required
                                     />
                                     <div className='botones2'>
-                                        <button className='boton-de-crear' type="submit">Guardar</button>
-                                        <button className='boton-de-borrar' type="button" onClick={() => setEditTaskId(null)}>Cancelar</button>
+                                        <button onClick={handleButtonClick} className='boton-de-crear' type="submit">Guardar</button>
+                                        <button type="button" onClick={() => {
+                                            handleButtonClick()
+                                            setEditTaskId(null)
+                                        }
+                                        }>Cancelar</button>
                                     </div>
                                 </form>
                             ) : (    //cambio de modo edicion a modo normal
@@ -90,10 +94,22 @@ function TareasPendientes({ tasks, deleteTask, getTask, setTasks }) {
                                     <p>{task.descripción}</p>
                                     <div className='botones2'>
                                         <div className='editar-borrar'>
-                                            <button className='boton-de-crear' onClick={() => handleEdit(task)}>Editar</button>
-                                            <button className='boton-de-borrar' onClick={() => deleteTask(task.id)}>Borrar</button>
+                                            <button className='boton-de-crear' onClick={() => {
+                                                handleButtonClick()
+                                                handleEdit(task)
+                                            }
+                                            }>Editar</button>
+                                            <button className='boton-de-borrar' onClick={() => {
+                                                handleButtonClick()
+                                                deleteTask(task.id)
+                                            }
+                                            }>Borrar</button>
                                         </div>
-                                        <button className='boton-de-trasladar' onClick={() => enviarATareasEnCurso(task.id)}>👉</button>
+                                        <button className='boton-de-trasladar' onClick={() => {
+                                            handleButtonClick()
+                                            enviarATareasEnCurso(task.id)
+                                        }
+                                        }>👉</button>
                                     </div>
                                 </>
                             )

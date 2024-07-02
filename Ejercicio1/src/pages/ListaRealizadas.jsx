@@ -2,7 +2,7 @@ import React from 'react';
 import supabase from "../supabase/config";
 import { useState } from 'react';
 
-function TareasRealizadas({ tasks, deleteTask, getTask, setTasks }) {
+function TareasRealizadas({ tasks, deleteTask, getTask, setTasks, handleButtonClick }) {
     //Aqui empleamos la misma logica de la lista Pendiente
     const [editTaskId, setEditTaskId] = useState(null);
     const [editTask, setEditTask] = useState({ tarea: '', descripción: '' });
@@ -77,18 +77,34 @@ function TareasRealizadas({ tasks, deleteTask, getTask, setTasks }) {
                                         onChange={handleEditChange}
                                         required
                                     />
-                                    <button type="submit">Guardar</button>
-                                    <button type="button" onClick={() => setEditTaskId(null)}>Cancelar</button>
+                                    <button onClick={handleButtonClick} className='boton-de-crear' type="submit">Guardar</button>
+                                    <button type="button" onClick={() => {
+                                        handleButtonClick()
+                                        setEditTaskId(null)
+                                    }
+                                    }>Cancelar</button>
                                 </form>
                             ) : (
                                 <>
                                     <h1 className="nombre-de-la-tarea">{task.tarea}</h1>
                                     <p>{task.descripción}</p>
                                     <div className='botones2'>
-                                        <button className='boton-de-trasladar' onClick={() => enviarATareasEnCurso(task.id)}>👈</button>
+                                        <button className='boton-de-trasladar' onClick={() => {
+                                            handleButtonClick()
+                                            enviarATareasEnCurso(task.id)
+                                        }
+                                        }>👈</button>
                                         <div className='editar-borrar'>
-                                            <button className='boton-de-crear' onClick={() => handleEdit(task)}>Editar</button>
-                                            <button className='boton-de-borrar' onClick={() => deleteTask(task.id)}>Borrar</button>
+                                            <button className='boton-de-crear' onClick={() => {
+                                                handleButtonClick()
+                                                handleEdit(task)
+                                            }
+                                            }>Editar</button>
+                                            <button className='boton-de-borrar' onClick={() => {
+                                                handleButtonClick()
+                                                deleteTask(task.id)
+                                            }
+                                            }>Borrar</button>
                                         </div>
 
                                     </div>

@@ -2,10 +2,24 @@ import supabase from './supabase/config'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import FormPage from './pages/FormPage'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import click from './media/click.mp3'
 import './App.css'
 
 function App() {
+
+  const audioRef = useRef(null);
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const playSound = () => {
+    audioRef.current.play();
+  };
+
+  const handleButtonClick = () => {
+    setButtonClicked(true);
+    playSound();
+  };
+
 
   const [tasks, setTasks] = useState([])
 
@@ -28,9 +42,14 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<HomePage tasks={tasks} setTasks={setTasks} getTask={getTask} />} />
-        <Route path='/formulario' element={<FormPage getTask={getTask} />} />
+        <Route path='/' element={<HomePage
+          tasks={tasks}
+          setTasks={setTasks}
+          handleButtonClick={handleButtonClick}
+          getTask={getTask} />} />
+        <Route path='/formulario' element={<FormPage getTask={getTask} handleButtonClick={handleButtonClick} />} />
       </Routes>
+      <audio ref={audioRef} src={click} />
     </>
     //rutas con propiedades enviadas
   )

@@ -25,3 +25,33 @@ function is_palindrome(texto) {
     // utilizo reverse para invertir los valores de principio y fin y join para volverlos a juntar en un solo texto
     return lowerCase === lowerCase.split('').reverse().join('');
 }
+
+function prime_numbers(n) {
+    if (n < 2) {
+        return [];
+    }
+
+    // creamos un array de base con boolean con un lenght de 0 a n y valor true 
+    let isPrime = Array(n + 1).fill(true);
+    isPrime[0] = isPrime[1] = false; // los valores primos comienzan a partir del 2
+
+    // esta ya la habia hecho antes, los valores i son los numeros por los cuales podrian ser divisibles los numeros hasta n
+    // todos los valores de i** no son primos al igual que los valores de i** + i 
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (isPrime[i]) {
+            for (let j = i * i; j <= n; j += i) {
+                isPrime[j] = false;
+            }
+        }
+    }
+
+    // este es el array de numeros primos
+    let primes = [];
+    for (let i = 2; i <= n; i++) {
+        if (isPrime[i]) {
+            primes.push(i);
+        }
+    }
+
+    return primes;
+}
